@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: user-app
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_POR}/${MYSQL_DB}?useUnicode=yes&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: ${MIN_IDLE}
+      maximum-pool-size: ${POOL_SIZE}
+      idle-timeout: ${IDLE_TIMEOUT}
+      pool-name: SpringBootJPAHikariCP
+      max-lifetime: ${MAX_LIFETIME}
+      connection-timeout: ${CONNECTION_TIMEOUT}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        show_sql: true
+        format_sql: true
+
+springdoc:
+  version: '@springdoc.version@'
+  swagger-ui:
+    use-root-path: true
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
