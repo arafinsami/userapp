@@ -43,9 +43,8 @@ public class AppUserResource {
     }
 
     @GetMapping
-    public ResponseEntity<Map<String, Object>> findAll(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+    public ResponseEntity<Map<String, Object>> findAll(@RequestParam(defaultValue = "0") int page,
+                                                       @RequestParam(defaultValue = "10") int size) {
         return UserResponseFactory.from(
                 UserFunctions.findAll(page, size)
         );
