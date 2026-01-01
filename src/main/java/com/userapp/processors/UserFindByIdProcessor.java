@@ -6,8 +6,8 @@ import com.userapp.respository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component("step.user.findById")
 @RequiredArgsConstructor
+@Component("step.user.findById")
 public class UserFindByIdProcessor implements ProcessorStep<UserContext> {
     private final AppUserRepository repository;
 

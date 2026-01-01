@@ -8,16 +8,10 @@ import lombok.Getter;
 @Getter
 @Builder
 public class UserCreateResponse extends BaseModel {
-
     private Long id;
-
     private String firstName;
-
     private String lastName;
-
     private String password;
-
     private String email;
-
     private UserStatus status;
 }

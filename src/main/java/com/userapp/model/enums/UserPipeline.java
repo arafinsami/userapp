@@ -8,7 +8,8 @@ import lombok.RequiredArgsConstructor;
 public enum UserPipeline {
     USER_CREATE("pipeline.user.create"),
     USER_UPDATE("pipeline.user.update"),
-    USER_FIND_BY_ID("pipeline.user.findById");
+    USER_FIND_BY_ID("pipeline.user.findById"),
+    USER_FIND_ALL("pipeline.user.findAll");
 
     private final String beanName;
 }

@@ -5,6 +5,7 @@ import com.userapp.core.UserBaseService;
 import com.userapp.core.UserPipelineRegistry;
 import com.userapp.core.UserServiceMarker;
 import com.userapp.model.context.UserContext;
+import com.userapp.model.context.UserPageContext;
 import com.userapp.model.entity.AppUser;
 import com.userapp.model.enums.ServiceKeys;
 import com.userapp.model.enums.UserPipeline;
@@ -24,11 +25,6 @@ public class UserService extends UserBaseService implements UserServiceMarker {
                        UserPipelineRegistry registry) {
         this.appUserRepository = appUserRepository;
         this.registry = registry;
-    }
-
-    @Transactional(readOnly = true)
-    public List<AppUser> findAll() {
-        return appUserRepository.findAll();
     }
 
     public UserContext save(UserCreateRequest request) {
@@ -60,5 +56,15 @@ public class UserService extends UserBaseService implements UserServiceMarker {
                 .id(id)
                 .build();
         return process(UserPipeline.USER_FIND_BY_ID, ctx);
+    }
+
+    @Transactional(readOnly = true)
+    public UserPageContext findAll(int page, int size) {
+        UserPageContext ctx = UserPageContext.builder()
+                .page(page)
+                .size(size)
+                .build();
+        process(UserPipeline.USER_FIND_ALL, ctx);
+        return ctx;
     }
 }

@@ -47,4 +47,14 @@ public class UserPipelineConfig {
                 error
         ));
     }
+
+    @Bean("pipeline.user.findAll")
+    public AppProcessors findAllPipeline(
+            @Qualifier("step.user.findAll") ProcessorStep<UserContext> find,
+            @Qualifier("step.user.errorLogger") ProcessorStep<UserContext> error) {
+        return new AppProcessors(List.of(
+                find,
+                error
+        ));
+    }
 }

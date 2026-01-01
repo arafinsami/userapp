@@ -1,22 +1,21 @@
 package com.userapp.model.context;
 
-import com.userapp.model.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Getter
 @Setter
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserContext extends AppContext {
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private UserStatus status;
+public class UserPageContext extends UserContext {
+    private int page;
+    private int size;
+    private long totalElements;
+    private List<UserViewContext> users;
 }

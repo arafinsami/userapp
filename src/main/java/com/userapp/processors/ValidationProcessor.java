@@ -5,20 +5,21 @@ import com.userapp.respository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import static java.util.Objects.isNull;
+
 @RequiredArgsConstructor
 @Component("step.user.validate")
 public class ValidationProcessor implements ProcessorStep<UserContext> {
-
     private final AppUserRepository repository;
 
     @Override
     public void execute(UserContext ctx) {
         if (!ctx.isSuccess()) return;
-        if (ctx.getEmail() == null || ctx.getEmail().isBlank()) {
+        if (isNull(ctx.getEmail()) || ctx.getEmail().isBlank()) {
             ctx.fail("Email is required");
             return;
         }
-        if (ctx.getId() == null && repository.existsByEmail(ctx.getEmail())) {
+        if (isNull(ctx.getId()) && repository.existsByEmail(ctx.getEmail())) {
             ctx.fail("Email already exists");
         }
     }

@@ -2,6 +2,7 @@ package com.userapp.api;
 
 import com.userapp.core.UserServiceLocator;
 import com.userapp.model.context.UserContext;
+import com.userapp.model.context.UserPageContext;
 import com.userapp.model.enums.ServiceKeys;
 import com.userapp.model.request.UserCreateRequest;
 import com.userapp.service.UserService;
@@ -43,5 +44,13 @@ public class UserBuilder {
                 UserService.class
         );
         return service.findById(id);
+    }
+
+    public static UserPageContext findAll(int page, int size) {
+        UserService service = locator.get(
+                ServiceKeys.USER_SERVICE.getCode(),
+                UserService.class
+        );
+        return service.findAll(page, size);
     }
 }

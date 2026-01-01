@@ -3,6 +3,7 @@ package com.userapp.functions;
 import com.userapp.api.UserBuilder;
 import com.userapp.core.UserServiceLocatorHolder;
 import com.userapp.model.context.UserContext;
+import com.userapp.model.context.UserPageContext;
 import com.userapp.model.enums.ServiceKeys;
 import com.userapp.model.request.UserCreateRequest;
 import com.userapp.service.UserService;
@@ -28,5 +29,9 @@ public interface UserFunctions {
     static UserContext findById(Long id) {
         Objects.requireNonNull(id, "id");
         return UserBuilder.findById(id);
+    }
+
+    static UserPageContext findAll(int page, int size) {
+        return UserBuilder.findAll(page, size);
     }
 }
